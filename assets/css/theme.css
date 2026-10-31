@@ -1,0 +1,110 @@
+
+/* BookNest — Central Design System */
+:root {
+    /* Brand colors */
+    --color-primary: #172554;
+    --color-primary-hover: #1e3a8a;
+    --color-background: #FFF9F0;
+    --color-surface: #FFFFFF;
+    --color-accent: #F59E0B;
+    --color-accent-hover: #D97706;
+    --color-success: #15803D;
+    --color-danger: #DC2626;
+
+    /* Text colors */
+    --color-text: #1F2937;
+    --color-muted: #6B7280;
+    --color-border: #E5E7EB;
+
+    /* Typography */
+    --font-family: "Inter", Arial, sans-serif;
+
+    /* Layout */
+    --container-width: 1200px;
+    --navbar-height: 72px;
+
+    /* Corners and shadows */
+    --radius-small: 8px;
+    --radius-medium: 14px;
+    --radius-large: 22px;
+    --shadow-card: 0 6px 24px rgba(23, 37, 84, 0.08);
+}
+
+/* Base styles */
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: var(--font-family);
+    background: var(--color-background);
+    color: var(--color-text);
+    line-height: 1.6;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+a {
+    color: var(--color-primary);
+    text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+.container {
+    width: min(100% - 32px, var(--container-width));
+    margin-inline: auto;
+}
+
+.card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-medium);
+    box-shadow: var(--shadow-card);
+}
+
+.btn-primary {
+    background: var(--color-primary);
+    color: #FFFFFF;
+    border: 0;
+    border-radius: var(--radius-small);
+    padding: 10px 18px;
+}
+
+.btn-primary:hover {
+    background: var(--color-primary-hover);
+}
+
+.btn-accent {
+    background: var(--color-accent);
+    color: var(--color-primary);
+    border: 0;
+    border-radius: var(--radius-small);
+    padding: 10px 18px;
+}
+
+.btn-accent:hover {
+    background: var(--color-accent-hover);
+}
+
+:focus-visible {
+    outline: 3px solid var(--color-accent);
+    outline-offset: 3px;
+}
