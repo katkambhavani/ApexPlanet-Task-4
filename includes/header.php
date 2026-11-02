@@ -24,7 +24,6 @@ $isAuthPage = in_array(
     true
 );
 
-// Returns the active class when the current page matches.
 $activeClass = function (array $pages) use ($currentPage) {
     return in_array($currentPage, $pages, true) ? 'active' : '';
 };
@@ -79,13 +78,11 @@ $activeClass = function (array $pages) use ($currentPage) {
             transition: 0.2s ease;
         }
 
-        /* Hover effect */
         .site-header .nav-link:hover {
             color: #FBBF24 !important;
             background: rgba(255, 255, 255, 0.08);
         }
 
-        /* Orange color for the currently selected page */
         .site-header .nav-link.active,
         .site-header .nav-link.active:hover {
             color: #F59E0B !important;
@@ -147,28 +144,30 @@ $activeClass = function (array $pages) use ($currentPage) {
 
         <div class="container">
 
-            <?php if ($isAuthPage): ?>
-
-                <a class="navbar-brand brand-name" href="index.php">
-                    BookNest<span>.</span>
-                </a>
-
-            <?php elseif ($isAdmin): ?>
+            <!-- Brand name -->
+            <?php if ($isAdmin): ?>
 
                 <a class="navbar-brand brand-name" href="admin/dashboard.php">
                     BookNest<span>.</span>Admin
                     <span class="account-label">ADMIN</span>
                 </a>
 
-            <?php else: ?>
+            <?php elseif ($isCustomer): ?>
 
                 <a class="navbar-brand brand-name" href="index.php">
                     BookNest<span>.</span>User
                 </a>
 
+            <?php else: ?>
+
+                <a class="navbar-brand brand-name" href="index.php">
+                    BookNest<span>.</span>
+                </a>
+
             <?php endif; ?>
 
 
+            <!-- Navigation is hidden on login and registration pages -->
             <?php if (!$isAuthPage): ?>
 
                 <button
@@ -187,6 +186,7 @@ $activeClass = function (array $pages) use ($currentPage) {
 
                     <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
 
+                        <!-- ADMIN NAVIGATION -->
                         <?php if ($isAdmin): ?>
 
                             <li class="nav-item">
@@ -230,15 +230,16 @@ $activeClass = function (array $pages) use ($currentPage) {
                                 </a>
                             </li>
 
+
+                        <!-- CUSTOMER NAVIGATION -->
                         <?php elseif ($isCustomer): ?>
- 
-                           
-                            </li>
+
                             <li class="nav-item">
                                 <a class="nav-link <?= $activeClass(['dashboard.php']) ?>"
                                    href="dashboard.php">
                                     My Dashboard
                                 </a>
+                            </li>
 
                             <li class="nav-item">
                                 <a class="nav-link <?= $activeClass(['books.php', 'book-details.php']) ?>"
@@ -254,26 +255,28 @@ $activeClass = function (array $pages) use ($currentPage) {
                                 </a>
                             </li>
 
-                           
-                            </li>
-
                             <li class="nav-item">
                                 <a class="nav-link <?= $activeClass(['my-orders.php']) ?>"
                                    href="my-orders.php">
                                     My Orders
                                 </a>
                             </li>
- <li class="nav-item">
+
+                            <li class="nav-item">
                                 <a class="nav-link <?= $activeClass(['index.php']) ?>"
                                    href="index.php">
                                     View Store
                                 </a>
+                            </li>
+
                             <li class="nav-item">
                                 <a class="btn btn-primary" href="logout.php">
                                     Logout
                                 </a>
                             </li>
 
+
+                        <!-- GUEST NAVIGATION -->
                         <?php else: ?>
 
                             <li class="nav-item">
