@@ -231,17 +231,14 @@ $activeClass = function (array $pages) use ($currentPage) {
                             </li>
 
                         <?php elseif ($isCustomer): ?>
- <li class="nav-item">
+ 
+                           
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link <?= $activeClass(['dashboard.php']) ?>"
                                    href="dashboard.php">
                                     My Dashboard
                                 </a>
-                            <li class="nav-item">
-                                <a class="nav-link <?= $activeClass(['index.php']) ?>"
-                                   href="index.php">
-                                    Home
-                                </a>
-                            </li>
 
                             <li class="nav-item">
                                 <a class="nav-link <?= $activeClass(['books.php', 'book-details.php']) ?>"
@@ -266,7 +263,11 @@ $activeClass = function (array $pages) use ($currentPage) {
                                     My Orders
                                 </a>
                             </li>
-
+ <li class="nav-item">
+                                <a class="nav-link <?= $activeClass(['index.php']) ?>"
+                                   href="index.php">
+                                    View Store
+                                </a>
                             <li class="nav-item">
                                 <a class="btn btn-primary" href="logout.php">
                                     Logout
