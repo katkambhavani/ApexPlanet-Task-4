@@ -286,6 +286,10 @@ require_once __DIR__ . '/includes/header.php';
             font-size: 25px;
         }
     }
+    input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear {
+    display: none;
+}
 </style>
 
 <section class="register-section">

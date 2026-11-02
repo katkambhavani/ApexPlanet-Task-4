@@ -23,6 +23,11 @@ $isAuthPage = in_array(
     ['login.php', 'register.php', 'forgot-password.php'],
     true
 );
+
+// Returns the active class when the current page matches.
+$activeClass = function (array $pages) use ($currentPage) {
+    return in_array($currentPage, $pages, true) ? 'active' : '';
+};
 ?>
 
 <!DOCTYPE html>
@@ -74,18 +79,19 @@ $isAuthPage = in_array(
             transition: 0.2s ease;
         }
 
+        /* Hover effect */
         .site-header .nav-link:hover {
-            color: #FBBF24;
+            color: #FBBF24 !important;
             background: rgba(255, 255, 255, 0.08);
         }
-.site-header .nav-link.active {
-    color: #F59E0B !important;
-    background: transparent !important;
-}
 
-.site-header .nav-link:hover {
-    color: #FBBF24;
-}
+        /* Orange color for the currently selected page */
+        .site-header .nav-link.active,
+        .site-header .nav-link.active:hover {
+            color: #F59E0B !important;
+            background: transparent !important;
+        }
+
         .site-header .btn-primary {
             background: #F59E0B;
             color: #172554;
@@ -143,8 +149,6 @@ $isAuthPage = in_array(
 
             <?php if ($isAuthPage): ?>
 
-                <!-- Login, Registration and Forgot Password header -->
-
                 <a class="navbar-brand brand-name" href="index.php">
                     BookNest<span>.</span>
                 </a>
@@ -186,31 +190,36 @@ $isAuthPage = in_array(
                         <?php if ($isAdmin): ?>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="admin/dashboard.php">
+                                <a class="nav-link <?= $activeClass(['dashboard.php']) ?>"
+                                   href="admin/dashboard.php">
                                     Dashboard
                                 </a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="admin/books.php">
+                                <a class="nav-link <?= $activeClass(['books.php']) ?>"
+                                   href="admin/books.php">
                                     Manage Books
                                 </a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="admin/users.php">
+                                <a class="nav-link <?= $activeClass(['users.php']) ?>"
+                                   href="admin/users.php">
                                     Manage Users
                                 </a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="admin/orders.php">
+                                <a class="nav-link <?= $activeClass(['orders.php']) ?>"
+                                   href="admin/orders.php">
                                     Manage Orders
                                 </a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="admin/store.php">
+                                <a class="nav-link <?= $activeClass(['store.php']) ?>"
+                                   href="admin/store.php">
                                     View Store
                                 </a>
                             </li>
@@ -221,59 +230,68 @@ $isAuthPage = in_array(
                                 </a>
                             </li>
 
-<?php elseif ($isCustomer): ?>
-
-    <li class="nav-item">
-        <a class="nav-link <?= $currentPage === 'index.php' ? 'active' : '' ?>" href="index.php">
-            Home
-        </a>
-    </li>
-
-    <li class="nav-item">
-        <a class="nav-link <?= $currentPage === 'books.php' ? 'active' : '' ?>" href="books.php">
-            Browse Books
-        </a>
-    </li>
-
-    <li class="nav-item">
-        <a class="nav-link <?= $currentPage === 'cart.php' ? 'active' : '' ?>" href="cart.php">
-            Cart
-        </a>
-    </li>
-
-    <li class="nav-item">
-        <a class="nav-link <?= $currentPage === 'dashboard.php' ? 'active' : '' ?>" href="dashboard.php">
-            My Dashboard
-        </a>
-    </li>
-
-    <li class="nav-item">
-        <a class="nav-link <?= $currentPage === 'my-orders.php' ? 'active' : '' ?>" href="my-orders.php">
-            My Orders
-        </a>
-    </li>
-
-    <li class="nav-item">
-        <a class="btn btn-primary" href="logout.php">
-            Logout
-        </a>
-    </li>
-                        <?php else: ?>
-
+                        <?php elseif ($isCustomer): ?>
+ <li class="nav-item">
+                                <a class="nav-link <?= $activeClass(['dashboard.php']) ?>"
+                                   href="dashboard.php">
+                                    My Dashboard
+                                </a>
                             <li class="nav-item">
-                                <a class="nav-link" href="index.php">
+                                <a class="nav-link <?= $activeClass(['index.php']) ?>"
+                                   href="index.php">
                                     Home
                                 </a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="books.php">
+                                <a class="nav-link <?= $activeClass(['books.php', 'book-details.php']) ?>"
+                                   href="books.php">
                                     Browse Books
                                 </a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="login.php">
+                                <a class="nav-link <?= $activeClass(['cart.php']) ?>"
+                                   href="cart.php">
+                                    Cart
+                                </a>
+                            </li>
+
+                           
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link <?= $activeClass(['my-orders.php']) ?>"
+                                   href="my-orders.php">
+                                    My Orders
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="btn btn-primary" href="logout.php">
+                                    Logout
+                                </a>
+                            </li>
+
+                        <?php else: ?>
+
+                            <li class="nav-item">
+                                <a class="nav-link <?= $activeClass(['index.php']) ?>"
+                                   href="index.php">
+                                    Home
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link <?= $activeClass(['books.php', 'book-details.php']) ?>"
+                                   href="books.php">
+                                    Browse Books
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link <?= $activeClass(['login.php']) ?>"
+                                   href="login.php">
                                     Login
                                 </a>
                             </li>
